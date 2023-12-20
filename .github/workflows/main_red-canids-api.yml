@@ -66,8 +66,6 @@ jobs:
           app-name: 'red-canids-api'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0E3B7F10D79493A8C40439B7C3D4616 }}
-          startup-command: |
-            gunicorn -w 2 -k uvicorn.workers.UvicornWorker main:app
 
   npm-publish:
     needs: [ build, deploy ]
