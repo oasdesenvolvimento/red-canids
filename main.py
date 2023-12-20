@@ -16,6 +16,10 @@ app = FastAPI(
         {
             "url": "http://0.0.0.0:8000",
             "description": "Local server",
+        },
+        {
+            "url": "https://red-canids-api.azurewebsites.net",
+            "description": "Staging server",
         }
     ]
 )

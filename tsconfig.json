@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "",
+    "target": "ES2022",
+    "sourceMap": true
+  },
+  "include": ["client/**/*"]
+}

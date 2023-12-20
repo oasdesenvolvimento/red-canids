@@ -14,6 +14,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+
     steps:
       - uses: actions/checkout@v4
 
@@ -65,3 +66,35 @@ jobs:
           app-name: 'red-canids-api'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0E3B7F10D79493A8C40439B7C3D4616 }}
+          startup-command: |
+            gunicorn -w 2 -k uvicorn.workers.UvicornWorker main:app
+
+  npm-publish:
+    needs: [ build, deploy ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Execute script
+        run:
+          npm run generate-client
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Send notification to Teams
+        run: |
+          curl -H "Content-Type: application/json" -d "{\"text\": \"Fala devs, nova versão da lib Red Canids está disponivel, confira: https://www.npmjs.com/package/red-canids-client-module\"}" ${{ secrets.TEAMS_WEBHOOK_URL }}
+

@@ -1,0 +1,20 @@
+{
+  "name": "red-canids-client-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "files": [
+    "client-web",
+    "client"
+  ],
+  "scripts": {
+    "generate-client": "openapi --input https://red-canids-api.azurewebsites.net/openapi.json --output ./client && tsc -p . --outDir ./client-web",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "openapi-typescript-codegen": "^0.23.0",
+    "typescript": "^4.9.4"
+  },
+  "author": "Mios Tech",
+  "license": "ISC"
+}
