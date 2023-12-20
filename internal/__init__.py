@@ -1,0 +1,1 @@
+from internal import save_image_in_storage
