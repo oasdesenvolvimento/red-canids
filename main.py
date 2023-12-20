@@ -9,18 +9,18 @@ database.connection_database.connect_database()
 app = FastAPI(
     title="API RED CANIDS",
     description="API for integration with RED CANIDS",
-    version="1.0.2",
+    version="1.0.3",
     docs_url="/red-canids-api-swagger",
     redoc_url="/red-canids-api-docs",
     root_path="https://red-canids-api.azurewebsites.net/",
     servers=[
         {
-            "url": "http://0.0.0.0:8000",
-            "description": "Local server",
+            "url": "https://red-canids-api.azurewebsites.net/",
+            "description": "Staging server",
         },
         {
-            "url": "https://red-canids-api.azurewebsites.net",
-            "description": "Staging server",
+            "url": "http://0.0.0.0:8000/",
+            "description": "Local server",
         }
     ]
 )
