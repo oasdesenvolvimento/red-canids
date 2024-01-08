@@ -40,11 +40,12 @@ class MissionPost(BaseModel):
         title="Classification of mission",
         description="Classification of mission, example: rare, normal",
         examples=["normal"])
-    points: str = Field(
-        default="",
+    points: int = Field(
+        default=0,
         alias="points",
         title="Points of mission",
-        examples=["100"],
+        examples=[100],
+        pattern="^[0-9]*$",
         description="Points of mission")
     type_points: str = Field(
         default="",
@@ -56,8 +57,8 @@ class MissionPost(BaseModel):
         default="",
         alias="type_mission",
         title="Type of mission",
-        description="Type of mission, example: youtube, tik_tok, finder",
-        examples=["youtube"])
+        description="Type of mission, example: video, tik_tok, finder",
+        examples=["video"])
     time_mission: Optional[str] = Field(
         default="",
         alias="time_mission",
@@ -71,7 +72,21 @@ class MissionPost(BaseModel):
         description="Url of mission",
         examples=["https://www.youtube.com/watch?v=123456789"],
         max_length=300)
-    code_mission: str = Field(
+    videos_mission: Optional[List[str]] = Field(
+        default="",
+        alias="videos_mission",
+        title="Videos of mission",
+        description="Videos of mission",
+        examples=["https://www.youtube.com/watch?v=123456789"],
+        max_length=1000)
+    video_source: Optional[str] = Field(
+        default="",
+        alias="video_source",
+        title="Video source of mission",
+        description="Video source of mission",
+        examples=["youtube"],
+        max_length=100)
+    code_mission: Optional[str] = Field(
         default="",
         alias="code_mission",
         title="Code of mission",

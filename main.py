@@ -1,8 +1,9 @@
+import router
 import uvicorn
+import database
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import router
-import database
 
 database.connection_database.connect_database()
 
@@ -12,7 +13,7 @@ app = FastAPI(
     version="1.0.3",
     docs_url="/red-canids-api-swagger",
     redoc_url="/red-canids-api-docs",
-    root_path="https://red-canids-api.azurewebsites.net/",
+    #root_path="https://red-canids-api.azurewebsites.net/",
     servers=[
         {
             "url": "https://red-canids-api.azurewebsites.net/",

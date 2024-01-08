@@ -1,7 +1,7 @@
-import os
 import base64
-from azure.storage.blob import BlobServiceClient, ContentSettings
 import imghdr
+
+from azure.storage.blob import BlobServiceClient, ContentSettings
 
 
 def upload_image(image, id_image):

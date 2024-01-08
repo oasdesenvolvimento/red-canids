@@ -1,0 +1,27 @@
+[run]
+
+omit =
+    */tests/*
+    */test/*
+    */test_*.py
+    */__init__.py
+    */setup.py
+    */conftest.py
+    */venv/*
+    */.venv/*
+    */.tox/*
+    */.git/*
+    */.eggs/*
+    */.pytest_cache/*
+    */.mypy_cache/*
+    */.vscode/*
+    */.vscode-test/*
+    */.vscode-test-remote/*
+    */.vscode-server/*
+    */.vscode-remote/*
+    */.vscode-remote-try-python/*
+    */.vscode-remote-try-python
+
+[report]
+# Fail if coverage is less than 90%
+fail_under = 90
