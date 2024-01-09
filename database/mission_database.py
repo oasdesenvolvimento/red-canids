@@ -15,6 +15,9 @@ def add_mission(value):
         type_mission=value.type_mission,
         time_mission=value.time_mission,
         url_mission=value.url_mission,
+        videos_mission=value.videos_mission,
+        video_source=value.video_source,
+        code_mission=value.code_mission,
         created_at=str(datetime.datetime.now()),
         updated_at=str(datetime.datetime.now())
     ).save()

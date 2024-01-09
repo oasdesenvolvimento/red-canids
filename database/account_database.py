@@ -1,3 +1,4 @@
+import json
 import random
 import datetime
 import core.model as model
@@ -30,3 +31,13 @@ def add_new_account(value: account_schema.account_post_schema):
         "_id": str(response.auto_id_0),
         "code_access": str(response.code_access),
     }
+
+
+def return_all_account():
+    """
+    Return all accounts in database
+    :return:
+    """
+    response_database = model.account_model.Account.objects().to_json()
+    response_database = json.loads(response_database)
+    return response_database

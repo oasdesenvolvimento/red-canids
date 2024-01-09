@@ -35,3 +35,16 @@ class AccountCreateGet(BaseModel):
             },
             "code_access": "123456"
         }])
+
+
+class AccountAllGet(BaseModel):
+    msg: str = Field(
+        alias="msg",
+        title="Message of response",
+        description="Message of response",
+        examples=["Success"])
+    data: object = Field(
+        alias="data",
+        title="Data of response",
+        description="Data of response"
+    )
