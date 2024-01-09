@@ -1,4 +1,4 @@
-from mongoengine import Document, ObjectIdField, StringField
+from mongoengine import Document, ObjectIdField, StringField, IntField
 
 
 class Mission(Document):
@@ -8,7 +8,7 @@ class Mission(Document):
     image_mission = StringField()
     expiration_date = StringField()
     classification = StringField()
-    points = StringField()
+    points = IntField()
     type_points = StringField()
     type_mission = StringField()
     time_mission = StringField()
