@@ -13,7 +13,7 @@ app = FastAPI(
     version="1.0.11",
     docs_url="/red-canids-api-swagger",
     redoc_url="/red-canids-api-docs",
-    root_path="https://red-canids-api.azurewebsites.net/",
+    #root_path="https://red-canids-api.azurewebsites.net/",
     servers=[
         {
             "url": "https://red-canids-api.azurewebsites.net/",
