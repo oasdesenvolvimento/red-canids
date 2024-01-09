@@ -45,7 +45,6 @@ class MissionPost(BaseModel):
         alias="points",
         title="Points of mission",
         examples=[100],
-        pattern="^[0-9]*$",
         description="Points of mission")
     type_points: str = Field(
         default="",
