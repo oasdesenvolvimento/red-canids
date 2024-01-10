@@ -17,6 +17,12 @@ router = APIRouter()
              operation_id="CreateAccount")
 async def service(values: core.schema.account_post_schema.AccountPost):
     response = database.account_database.add_new_account(values)
+    if response == 401:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=json.dumps(dict(
+            msg="Email already registered",
+            type="error",
+            data="Email already registered"
+        )))
     if response is not None:
         return {"msg": "success", "data": {
             "_id": {

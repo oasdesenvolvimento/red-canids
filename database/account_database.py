@@ -10,6 +10,9 @@ def add_new_account(value: account_schema.account_post_schema):
     Add new account in database
     :return:
     """
+    check_email = model.account_model.Account.objects(email=value.email).first()
+    if check_email is not None:
+        return 401
     response = model.account_model.Account(
         name=value.name,
         email=value.email,

@@ -108,6 +108,31 @@ class MissionAllGetResponse(BaseModel):
         alias="data",
         title="Data of response",
         description="Data of response",
+        examples=[[{
+            "_id": "5f9d1f9d9c9d6f2e6a9b7f0b",
+            "name_mission": "Mission 1",
+            "description_mission": "Description of mission 1",
+            "image_mission": "https://www.image.com.br",
+            "expiration_date": "2021-01-01 00:00:00",
+            "classification": "normal",
+            "points": "100",
+            "type_points": "red_coins",
+            "type_mission": "youtube",
+            "time_mission": "00:00:00",
+            "url_mission": "https://www.youtube.com/watch?v=123456789"
+        }]])
+
+
+class MissionGetResponse(BaseModel):
+    msg: str = Field(
+        alias="msg",
+        title="Message of response",
+        description="Message of response",
+        examples=["Success"])
+    data: MissionAllGetDataResponse = Field(
+        alias="data",
+        title="Data of response",
+        description="Data of response",
         examples=[{
             "_id": "5f9d1f9d9c9d6f2e6a9b7f0b",
             "name_mission": "Mission 1",

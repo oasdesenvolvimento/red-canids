@@ -28,3 +28,9 @@ def return_all_mission():
     response_database = model.mission_model.Mission.objects().to_json()
     response_database = json.loads(response_database)
     return response_database
+
+
+def return_mission_by_id(id_mission):
+    response_database = model.mission_model.Mission.objects(_id=id_mission).first().to_json()
+    response_database = json.loads(response_database)
+    return response_database
