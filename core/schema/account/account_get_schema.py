@@ -48,3 +48,16 @@ class AccountAllGet(BaseModel):
         title="Data of response",
         description="Data of response"
     )
+
+
+class AccountGet(BaseModel):
+    msg: str = Field(
+        alias="msg",
+        title="Message of response",
+        description="Message of response",
+        examples=["Success"])
+    data: object = Field(
+        alias="data",
+        title="Data of response",
+        description="Data of response"
+    )

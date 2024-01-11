@@ -54,3 +54,21 @@ async def service():
             type="error",
             data="Admin not created"
         )))
+
+
+@router.get("/{email}/{code_access}",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Return account by email and code access",
+            response_description="Return account by email and code access",
+            description="Return account by email and code access",
+            operation_id="ReturnAccountByEmailAndCodeAccess")
+async def service(email: str, code_access: str):
+    response = database.account_database.return_account_by_email_and_code_access(email, code_access)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))

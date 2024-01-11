@@ -1,4 +1,4 @@
-from mongoengine import Document, ObjectIdField, StringField, BooleanField, EmbeddedDocument, EmbeddedDocumentField
+from mongoengine import Document, ObjectIdField, StringField, IntField
 
 
 class Account(Document):
@@ -6,6 +6,8 @@ class Account(Document):
     name = StringField()
     email = StringField()
     password = StringField()
+    red_coins = IntField()
+    red_xp = IntField()
     gmail_access_token = StringField()
     apple_access_token = StringField()
     facebook_access_token = StringField()
