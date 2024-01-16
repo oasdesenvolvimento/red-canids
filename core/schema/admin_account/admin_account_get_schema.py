@@ -28,15 +28,9 @@ class AdminCreateGet(BaseModel):
         title="Message of response",
         description="Message of response",
         examples=["Success"])
-    data: AdminCreateGetData = Field(
+    data: str = Field(
         alias="data",
         title="Data of response",
         description="Data of response",
-        examples=[{
-            "id": {
-                "$oid": "5f9d1f9d9c9d6f2e6a9b7f0b"
-            },
-            "name": "Rui Maria",
-            "level_access": 0
-        }])
+        examples=["5f9d1f9d9c9d6f2e6a9b7f0b"])
 

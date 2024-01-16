@@ -21,7 +21,7 @@ def add_new_admin(value: admin_schema.admin_account_post_schema):
         password=internal.crypt.encrypt(value.password) if len(value.password) > 0 else "",
         level_access=value.level_access
     ).save()
-    return response.auto_id_0
+    return str(response.auto_id_0)
 
 
 def return_admin_by_email(email):
