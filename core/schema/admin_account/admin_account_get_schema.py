@@ -34,3 +34,15 @@ class AdminCreateGet(BaseModel):
         description="Data of response",
         examples=["5f9d1f9d9c9d6f2e6a9b7f0b"])
 
+
+class AdminLoginGet(BaseModel):
+    msg: str = Field(
+        alias="msg",
+        title="Message of response",
+        description="Message of response",
+        examples=["Success"])
+    data: object = Field(
+        alias="data",
+        title="Data of response",
+        description="Data of response")
+

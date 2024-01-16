@@ -34,7 +34,7 @@ async def service(values: schema.admin_account_post_schema.AdminPost):
 
 
 @router.get("/{email}/{password}",
-            response_model=schema.admin_account_get_schema.AdminCreateGet,
+            response_model=schema.admin_account_get_schema.AdminLoginGet,
             summary="Return admin by email and password",
             response_description="Return admin by email and password",
             description="Return admin by email and password",
