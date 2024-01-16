@@ -35,6 +35,7 @@ app.add_middleware(
 app.include_router(router.mission_router.router, prefix="/mission", tags=["mission"])
 app.include_router(router.image_router.router, prefix="/image", tags=["image"])
 app.include_router(router.account_router.router, prefix="/account", tags=["account"])
+app.include_router(router.admin_router.router, prefix="/admin", tags=["admin"])
 
 if __name__ == "__main__":
     """
