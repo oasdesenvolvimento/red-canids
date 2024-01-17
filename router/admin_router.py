@@ -55,4 +55,3 @@ async def service(email: str, password: str):
             type="error",
             data="Admin not found"
         )))
-    
