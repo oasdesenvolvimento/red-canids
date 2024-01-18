@@ -36,6 +36,7 @@ app.include_router(router.mission_router.router, prefix="/mission", tags=["missi
 app.include_router(router.image_router.router, prefix="/image", tags=["image"])
 app.include_router(router.account_router.router, prefix="/account", tags=["account"])
 app.include_router(router.admin_router.router, prefix="/admin", tags=["admin"])
+app.include_router(router.products_router.router, prefix="/product", tags=["product"])
 
 if __name__ == "__main__":
     """
