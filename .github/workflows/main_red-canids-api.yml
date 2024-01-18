@@ -71,6 +71,9 @@ jobs:
     needs: [ build, deploy ]
     runs-on: ubuntu-latest
     steps:
+      - name: Delay
+        run: sleep 120
+
       - name: Checkout code
         uses: actions/checkout@v2
 

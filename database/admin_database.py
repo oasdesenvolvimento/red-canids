@@ -34,6 +34,16 @@ def return_admin_by_email(email):
     return response_database
 
 
+def return_admin_by_id(id_admin):
+    """
+    Return user in database by id
+    :return: json
+    """
+    response_database = model.admin_account_model.Admin.objects(_id=id_admin).first()
+    response_database = json.loads(response_database.to_json()) if response_database is not None else None
+    return response_database
+
+
 def return_admin_by_login(email: str, password: str):
     """
     Return admin by email and password

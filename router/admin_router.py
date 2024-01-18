@@ -55,3 +55,26 @@ async def service(email: str, password: str):
             type="error",
             data="Admin not found"
         )))
+
+
+@router.get("/{id_admin}",
+            response_model=schema.admin_account_get_schema.AdminLoginGet,
+            summary="Return admin by id",
+            response_description="Return admin by id",
+            description="Return admin by id",
+            operation_id="ReturnAdminById")
+async def service(id_admin: str):
+    """
+    Return admin by id
+    :param id_admin:
+    :return:
+    """
+    response = database.admin_database.return_admin_by_id(id_admin)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="Admin not found",
+            type="error",
+            data="Admin not found"
+        )))
