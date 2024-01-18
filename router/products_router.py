@@ -31,7 +31,7 @@ async def service(values: PostSchema.ProductPost):
 
 
 @router.get("/",
-            response_model=GetSchema.ProductGetResponse,
+            response_model=GetSchema.ProductAllGetResponse,
             summary="Return all products",
             response_description="Return all products",
             description="Return all products",
