@@ -34,3 +34,12 @@ def return_mission_by_id(id_mission):
     response_database = model.mission_model.Mission.objects(_id=id_mission).first().to_json()
     response_database = json.loads(response_database)
     return response_database
+
+
+def validate_mission_finder(id_mission, code):
+    response_database = model.mission_model.Mission.objects(_id=id_mission).first()
+    if response_database is None:
+        return None
+    if response_database.code_mission == code:
+        return True
+    return False

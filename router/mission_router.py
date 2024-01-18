@@ -63,3 +63,20 @@ async def service(id_mission: str):
             data="Error to return mission"
         )))
 
+
+@router.get("/validate-mission-finder/{id_mission}/{code}",
+            response_model=core.schema.mission.mission_get_schema.MissionGetResponse,
+            summary="Validate mission finder",
+            response_description="Validate mission finder",
+            description="Validate mission finder",
+            operation_id="ValidateMissionFinder")
+async def service(id_mission: str, code: str):
+    response = database.mission_database.validate_mission_finder(id_mission, code)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="Error to validate mission finder",
+            type="error",
+            data="Error to validate mission finder"
+        )))
