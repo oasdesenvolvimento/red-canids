@@ -3,6 +3,43 @@ from mongoengine import ObjectIdField
 from pydantic import BaseModel, Field
 
 
+class MissionCompleted(BaseModel):
+    id_account: str = Field(
+        default="",
+        alias="id_account",
+        title="Id account of user",
+        description="Id account of user",
+        max_length=100,
+        examples=["123456"])
+    id_mission: str = Field(
+        default="",
+        alias="id_mission",
+        title="Id mission completed",
+        description="Id mission completed",
+        max_length=100,
+        examples=["123456"])
+    points: int = Field(
+        default=0,
+        alias="points",
+        title="Points of mission",
+        description="Points of mission",
+        examples=[0])
+    type_points: str = Field(
+        default="",
+        alias="type_points",
+        title="Type points of mission",
+        description="Type points of mission",
+        max_length=100,
+        examples=["red_coins"])
+    type_mission: str = Field(
+        default="",
+        alias="type_mission",
+        title="Type mission",
+        description="Type mission",
+        max_length=100,
+        examples=[""])
+
+
 class AccountPost(BaseModel):
     _id: ObjectIdField()
     name: str = Field(
@@ -100,3 +137,15 @@ class AccountPost(BaseModel):
         description="Code access of user",
         max_length=6,
         examples=["123456"])
+    missions_completed: Optional[List[MissionCompleted]] = Field(
+        default=[],
+        alias="missions_completed",
+        title="Missions completed of user",
+        description="Missions completed of user",
+        examples=[{
+            "id_mission": "123456",
+            "date_completed": "2021-01-01 00:00:00",
+            "points": 0,
+            "type_points": "red_coins"
+        }]
+    )

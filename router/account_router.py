@@ -72,3 +72,39 @@ async def service(email: str, code_access: str):
             type="error",
             data="User not found"
         )))
+
+
+@router.put("/mission/completed/",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Update mission completed",
+            response_description="Update mission completed",
+            description="Update mission completed",
+            operation_id="UpdateMissionCompleted")
+async def service(values: core.schema.account_post_schema.MissionCompleted):
+    response = database.account_database.update_mission_completed(values)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="Error to update mission completed",
+            type="error",
+            data="Error to update mission completed"
+        )))
+
+
+@router.get("/mission/check-if-already-completed/{id_account}/{id_mission}",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Check if mission already completed",
+            response_description="Check if mission already completed",
+            description="Check if mission already completed",
+            operation_id="CheckIfMissionAlreadyCompleted")
+async def service(id_account: str, id_mission: str):
+    response = database.account_database.check_if_mission_already_completed(id_account, id_mission)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))

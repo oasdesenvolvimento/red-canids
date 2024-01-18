@@ -1,4 +1,12 @@
-from mongoengine import Document, ObjectIdField, StringField, IntField
+from mongoengine import (Document, ObjectIdField, StringField, IntField, ListField,
+                         EmbeddedDocument, EmbeddedDocumentField)
+
+
+class MissionsCompleted(EmbeddedDocument):
+    id_mission = StringField()
+    date_completed = StringField()
+    points = IntField()
+    type_points = StringField()
 
 
 class Account(Document):
@@ -19,3 +27,4 @@ class Account(Document):
     code_access = StringField()
     created_at = StringField()
     updated_at = StringField()
+    missions_completed = ListField(EmbeddedDocumentField(MissionsCompleted))
