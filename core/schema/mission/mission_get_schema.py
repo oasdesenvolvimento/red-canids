@@ -146,3 +146,16 @@ class MissionGetResponse(BaseModel):
             "time_mission": "00:00:00",
             "url_mission": "https://www.youtube.com/watch?v=123456789"
         }])
+
+
+class MissionValidateToFinderGet(BaseModel):
+    msg: str = Field(
+        alias="msg",
+        title="Message of response",
+        description="Message of response",
+        examples=["Success"])
+    data: bool = Field(
+        alias="data",
+        title="Data of response",
+        description="Data of response",
+        examples=[True])

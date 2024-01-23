@@ -65,7 +65,7 @@ async def service(id_mission: str):
 
 
 @router.get("/validate-mission-finder/{id_mission}/{code}",
-            response_model=core.schema.mission.mission_get_schema.MissionGetResponse,
+            response_model=core.schema.mission.mission_get_schema.MissionValidateToFinderGet,
             summary="Validate mission finder",
             response_description="Validate mission finder",
             description="Validate mission finder",
