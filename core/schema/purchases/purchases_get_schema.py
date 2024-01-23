@@ -69,30 +69,77 @@ class PurchaseAllGetDataResponse(BaseModel):
     )
 
 
+class PurchaseAccount(BaseModel):
+    id: Dict[str, str] = Field(
+        alias="_id",
+        title="Id of product",
+        description="Id of product",
+        examples=[{
+            "$oid": "5f9d1f9d9c9d6f2e6a9b7f0b"
+        }])
+    name: str = Field(
+        default="",
+        alias="name",
+        title="Name of product",
+        description="Name of product",
+        max_length=100,
+        examples=["Teste"])
+    email: str = Field(
+        default="",
+        alias="email",
+        title="Email of user",
+        description="Email of user",
+        max_length=100,
+        examples=["test@teste.com"])
+
+
+class PurchaseProduct(BaseModel):
+    id: Dict[str, str] = Field(
+        alias="_id",
+        title="Id of product",
+        description="Id of product",
+        examples=[{
+            "$oid": "5f9d1f9d9c9d6f2e6a9b7f0b"
+        }])
+    name_product: str = Field(
+        default="",
+        alias="name_product",
+        title="Name of product",
+        description="Name of product",
+        max_length=100,
+        examples=["Teste"])
+    description_product: str = Field(
+        default="",
+        alias="description_product",
+        title="Description of product",
+        description="Description of product",
+        max_length=100,
+        examples=["Teste"])
+    image_product: str = Field(
+        default="",
+        alias="image_product",
+        title="Image of product",
+        description="Image of product",
+        max_length=100,
+        examples=["Teste"])
+
+
+class PurchaseAllGetResponseEmbedded(BaseModel):
+    purchase: PurchaseAllGetDataResponse
+    account: PurchaseAccount
+    product: PurchaseProduct
+
+
 class PurchaseAllGetResponse(BaseModel):
     msg: str = Field(
         alias="msg",
         title="Message of response",
         description="Message of response",
         examples=["Success"])
-    data: List[PurchaseAllGetDataResponse] = Field(
+    data: List[PurchaseAllGetResponseEmbedded] = Field(
         alias="data",
         title="Data of response",
-        description="Data of response",
-        examples=[[{
-            "_id": {"$oid": "123124323894723984"},
-            "name": "",
-            "description": "",
-            "id_product": "",
-            "id_account": "",
-            "last_account_red_coins": 0,
-            "current_account_red_coins": 0,
-            "total_price": 0,
-            "is_visible": True,
-            "is_done": False,
-            "created_at": "",
-            "updated_at": ""
-        }]])
+        description="Data of response")
 
 
 class PurchaseGetResponse(BaseModel):

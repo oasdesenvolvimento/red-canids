@@ -27,8 +27,25 @@ def add_purchases(value):
 
 def return_all_purchases():
     response_database = model.purchases_model.Purchases.objects().to_json()
+    response_account = model.account_model.Account.objects().to_json()
+    response_account = json.loads(response_account)
+    response_product = model.products_model.Product.objects().to_json()
+    response_product = json.loads(response_product)
+    response_database_merged = []
     response_database = json.loads(response_database)
-    return response_database
+    for item in response_database:
+        response_database_account = \
+            [account for account in response_account if account["_id"]["$oid"] == item["id_account"]][0]
+        response_database_product = \
+            [product for product in response_product if product["_id"]["$oid"] == item["id_product"]][0]
+        response_database_merged.append(
+            {
+                "purchase": item,
+                "account": response_database_account,
+                "product": response_database_product
+            }
+        )
+    return response_database_merged
 
 
 def return_purchase_by_id(id_purchase):
