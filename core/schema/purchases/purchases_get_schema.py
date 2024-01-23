@@ -148,21 +148,8 @@ class PurchaseGetResponse(BaseModel):
         title="Message of response",
         description="Message of response",
         examples=["Success"])
-    data: PurchaseAllGetDataResponse = Field(
+    data: PurchaseAllGetResponseEmbedded = Field(
         alias="data",
         title="Data of response",
-        description="Data of response",
-        examples=[[{
-            "_id": {"$oid": "123124323894723984"},
-            "name": "",
-            "description": "",
-            "id_product": "",
-            "id_account": "",
-            "last_account_red_coins": 0,
-            "current_account_red_coins": 0,
-            "total_price": 0,
-            "is_visible": True,
-            "is_done": False,
-            "created_at": "",
-            "updated_at": ""
-        }]])
+        description="Data of response"
+    )

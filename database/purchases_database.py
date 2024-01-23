@@ -50,8 +50,19 @@ def return_all_purchases():
 
 def return_purchase_by_id(id_purchase):
     response_database = model.purchases_model.Purchases.objects(_id=id_purchase).first().to_json()
+    response_account = model.account_model.Account.objects().to_json()
+    response_account = json.loads(response_account)
+    response_product = model.products_model.Product.objects().to_json()
+    response_product = json.loads(response_product)
     response_database = json.loads(response_database)
-    return response_database
+    response_database_merged = {
+        "purchase": response_database,
+        "account":
+            [account for account in response_account if account["_id"]["$oid"] == response_database["id_account"]][0],
+        "product":
+            [product for product in response_product if product["_id"]["$oid"] == response_database["id_product"]][0]
+    }
+    return response_database_merged
 
 
 def update_purchase_by_id(id_purchase, value):
