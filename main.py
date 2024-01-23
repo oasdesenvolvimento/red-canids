@@ -10,7 +10,7 @@ database.connection_database.connect_database()
 app = FastAPI(
     title="API RED CANIDS",
     description="API for integration with RED CANIDS",
-    version="1.0.23",
+    version="1.0.24",
     docs_url="/red-canids-api-swagger",
     redoc_url="/red-canids-api-docs",
     #root_path="https://red-canids-api.azurewebsites.net/",
@@ -37,6 +37,7 @@ app.include_router(router.image_router.router, prefix="/image", tags=["image"])
 app.include_router(router.account_router.router, prefix="/account", tags=["account"])
 app.include_router(router.admin_router.router, prefix="/admin", tags=["admin"])
 app.include_router(router.products_router.router, prefix="/product", tags=["product"])
+app.include_router(router.purchases_router.router, prefix="/purchases", tags=["purchases"])
 
 if __name__ == "__main__":
     """
