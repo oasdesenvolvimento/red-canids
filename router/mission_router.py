@@ -80,3 +80,39 @@ async def service(id_mission: str, code: str):
             type="error",
             data="Error to validate mission finder"
         )))
+
+
+@router.put("/update-mission",
+            response_model=core.schema.mission.mission_put_schema.MissionPutResponse,
+            summary="Update mission",
+            response_description="Update mission",
+            description="Update mission by id",
+            operation_id="UpdateMissionById")
+async def service(id_mission: str, value: core.schema.mission_put_schema.MissionPut):
+    response = database.mission_database.update_mission_by_id(id_mission, value)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="Error to update mission",
+            type="error",
+            data="Error to update mission"
+        )))
+
+
+@router.delete("/delete-mission/{id_mission}",
+               response_model=core.schema.mission.mission_put_schema.MissionPutResponse,
+               summary="Delete mission",
+               response_description="Delete mission",
+               description="Delete mission by id",
+               operation_id="DeleteMissionById")
+async def service(id_mission: str):
+    response = database.mission_database.delete_mission_by_id(id_mission)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="Error to delete mission",
+            type="error",
+            data="Error to delete mission"
+        )))
