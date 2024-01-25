@@ -120,3 +120,17 @@ def check_if_mission_already_completed(id_account: str, id_mission: str):
         if mission.id_mission == id_mission:
             return True
     return False
+
+
+def add_red_coins(id_account, red_coins):
+    response_database = model.account_model.Account.objects(_id=id_account).update_one(
+        red_coins=red_coins
+    )
+    return response_database
+
+
+def add_red_xp(id_account, red_xp):
+    response_database = model.account_model.Account.objects(_id=id_account).update_one(
+        red_xp=red_xp
+    )
+    return response_database

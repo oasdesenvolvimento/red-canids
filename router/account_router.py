@@ -108,3 +108,39 @@ async def service(id_account: str, id_mission: str):
             type="error",
             data="User not found"
         )))
+
+
+@router.put("/add-red-coins",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Add Red coins to account",
+            response_description="Add Red coins to account",
+            description="Add Red coins to account",
+            operation_id="AddRedCoins")
+async def service(id_account: str, red_coins: int):
+    response = database.account_database.add_red_coins(id_account, red_coins)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))
+
+
+@router.put("/add-red-xp",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Add Red xp to account",
+            response_description="Add Red xp to account",
+            description="Add Red xp to account",
+            operation_id="AddRedXp")
+async def service(id_account: str, red_xp: int):
+    response = database.account_database.add_red_xp(id_account, red_xp)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))
