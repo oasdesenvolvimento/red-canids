@@ -16,7 +16,7 @@ app = FastAPI(
     #root_path="https://red-canids-api.azurewebsites.net/",
     servers=[
         {
-            "url": "https://red-canids-api.azurewebsites.net/",
+            "url": "https://red-canids-api-2.azurewebsites.net/",
             "description": "Staging server",
         },
         {
