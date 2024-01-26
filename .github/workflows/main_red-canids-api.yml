@@ -2,7 +2,7 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - red-canids-api
+name: Build and deploy Python app to Azure Web App - red-canids-api-2
 
 on:
   push:
@@ -12,16 +12,15 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
-
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python version
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v1
         with:
-          python-version: '3.9.7'
+          python-version: '3.11'
 
       - name: Create and start virtual environment
         run: |
@@ -63,9 +62,9 @@ jobs:
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'red-canids-api'
+          app-name: 'red-canids-api-2'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0E3B7F10D79493A8C40439B7C3D4616 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_49B4484AA5954E318F1F49B1EF4DE44F }}
 
   npm-publish:
     needs: [ build, deploy ]
@@ -98,4 +97,3 @@ jobs:
       - name: Send notification to Teams
         run: |
           curl -H "Content-Type: application/json" -d "{\"text\": \"Fala devs, nova versão da lib Red Canids está disponivel, confira: https://www.npmjs.com/package/red-canids-client-module\"}" ${{ secrets.TEAMS_WEBHOOK_URL }}
-
