@@ -20,7 +20,7 @@ def add_new_account(value: account_schema.account_post_schema):
         red_coins=value.red_coins,
         red_xp=value.red_xp,
         gmail_access_token=value.gmail_access_token,
-        apple_access_token=value.apple_access_token,
+        apple_access_token="",
         facebook_access_token=value.facebook_access_token,
         discord_access_token=value.discord_access_token,
         twitter_access_token=value.twitter_access_token,
@@ -120,3 +120,34 @@ def check_if_mission_already_completed(id_account: str, id_mission: str):
         if mission.id_mission == id_mission:
             return True
     return False
+
+
+def add_red_coins(id_account, red_coins):
+    response_database = model.account_model.Account.objects(_id=id_account).update_one(
+        red_coins=red_coins
+    )
+    return response_database
+
+
+def add_red_xp_some(id_account, red_xp):
+    response_database = model.account_model.Account.objects(_id=id_account).first().to_json()
+    response_database_json = json.loads(response_database)
+    red_to_add = response_database_json["red_xp"] + red_xp
+    response = model.account_model.Account.objects(_id=id_account).update(
+        red_xp=red_to_add
+    )
+    return response
+
+
+def add_red_xp(id_account, red_xp):
+    response_database = model.account_model.Account.objects(_id=id_account).update_one(
+        red_xp=red_xp
+    )
+    return response_database
+
+
+def add_friend(friend_id, invitee_id):
+    response = model.account_model.Account.objects(_id=invitee_id).update_one(
+        friends=friend_id
+    )
+    return response

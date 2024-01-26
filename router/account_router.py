@@ -17,6 +17,9 @@ router = APIRouter()
              operation_id="CreateAccount")
 async def service(values: core.schema.account_post_schema.AccountPost):
     response = database.account_database.add_new_account(values)
+    if response is not None:
+        database.account_database.add_red_xp_some(values.apple_access_token, 100)
+        database.account_database.add_friend(response["_id"]["$oid"], values.apple_access_token)
     if response == 401:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=json.dumps(dict(
             msg="Email already registered",
@@ -100,6 +103,42 @@ async def service(values: core.schema.account_post_schema.MissionCompleted):
             operation_id="CheckIfMissionAlreadyCompleted")
 async def service(id_account: str, id_mission: str):
     response = database.account_database.check_if_mission_already_completed(id_account, id_mission)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))
+
+
+@router.put("/add-red-coins",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Add Red coins to account",
+            response_description="Add Red coins to account",
+            description="Add Red coins to account",
+            operation_id="AddRedCoins")
+async def service(id_account: str, red_coins: int):
+    response = database.account_database.add_red_coins(id_account, red_coins)
+    if response is not None:
+        return {"msg": "success", "data": response}
+    else:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=json.dumps(dict(
+            msg="User not found",
+            type="error",
+            data="User not found"
+        )))
+
+
+@router.put("/add-red-xp",
+            response_model=core.schema.account_get_schema.AccountGet,
+            summary="Add Red xp to account",
+            response_description="Add Red xp to account",
+            description="Add Red xp to account",
+            operation_id="AddRedXp")
+async def service(id_account: str, red_xp: int):
+    response = database.account_database.add_red_xp(id_account, red_xp)
     if response is not None:
         return {"msg": "success", "data": response}
     else:

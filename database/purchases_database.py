@@ -9,6 +9,9 @@ def add_purchases(value):
     :param value:
     :return:
     """
+    model.account_model.Account.objects(_id=value.id_account).update_one(
+        red_coins=value.current_account_red_coins
+    )
     response = model.purchases_model.Purchases(
         name=value.name,
         description=value.description,

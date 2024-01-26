@@ -120,7 +120,6 @@ class PurchaseProduct(BaseModel):
         alias="image_product",
         title="Image of product",
         description="Image of product",
-        max_length=100,
         examples=["Teste"])
 
 
