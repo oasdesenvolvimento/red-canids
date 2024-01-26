@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: mac-hosted
+    runs-on: self-hosted
 
 
     steps:
