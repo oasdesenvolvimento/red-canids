@@ -19,6 +19,7 @@ async def service(values: core.schema.account_post_schema.AccountPost):
     response = database.account_database.add_new_account(values)
     if response is not None:
         database.account_database.add_red_xp_some(values.apple_access_token, 100)
+        database.account_database.add_friend(response["_id"]["$oid"], values.apple_access_token)
     if response == 401:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=json.dumps(dict(
             msg="Email already registered",

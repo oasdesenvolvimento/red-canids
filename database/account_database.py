@@ -144,3 +144,10 @@ def add_red_xp(id_account, red_xp):
         red_xp=red_xp
     )
     return response_database
+
+
+def add_friend(friend_id, invitee_id):
+    response = model.account_model.Account.objects(_id=invitee_id).update_one(
+        friends=friend_id
+    )
+    return response
