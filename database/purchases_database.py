@@ -37,10 +37,18 @@ def return_all_purchases():
     response_database_merged = []
     response_database = json.loads(response_database)
     for item in response_database:
-        response_database_account = \
-            [account for account in response_account if account["_id"]["$oid"] == item["id_account"]][0]
-        response_database_product = \
-            [product for product in response_product if product["_id"]["$oid"] == item["id_product"]][0]
+        try:
+            response_database_account = \
+                [account for account in response_account if account["_id"]["$oid"] == item["id_account"]][0]
+        except Exception as e:
+            response_database_account = None
+        try:
+            response_database_product = \
+                [product for product in response_product if product["_id"]["$oid"] == item["id_product"]][0]
+        except Exception as e:
+            response_database_product = None
+        if response_database_account is None or response_database_product is None:
+            continue
         response_database_merged.append(
             {
                 "purchase": item,

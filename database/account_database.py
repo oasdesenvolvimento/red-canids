@@ -93,12 +93,9 @@ def update_mission_completed(value):
     response_database = json.loads(response_database)
 
     # Get the type_point of check_mission and update the red_coins or red_xp
-    if check_mission["type_points"] == "red_coins":
-        response_database["red_coins"] = response_database["red_coins"] + check_mission["points"]
-    elif check_mission["type_points"] == "red_xp":
-        response_database["red_xp"] = response_database["red_xp"] + check_mission["points"]
-    else:
-        return None
+    response_database["red_coins"] = response_database["red_coins"] + check_mission["points"]
+    response_database["red_xp"] = response_database["red_xp"] + check_mission["points"]
+
     model.account_model.Account.objects(_id=value.id_account).update_one(
         red_coins=response_database["red_coins"],
         red_xp=response_database["red_xp"]
