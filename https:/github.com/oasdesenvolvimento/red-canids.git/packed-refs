@@ -1,7 +1,0 @@
-# pack-refs with: peeled fully-peeled sorted 
-8c29f195cae32f2ec87c01de1af95f120087a61f refs/heads/create-admin
-e777b2edc48bc4ed2912782a550b4a67d19e6288 refs/heads/create-products
-3c36409ce8942571d71e87f1ce93cf525203d036 refs/heads/create-red-coins-red-xp
-470c56eaa4d145079baae9dda6e53362c8256749 refs/heads/main
-bcee34286d4b9b718854e53c93abba3769c09ac9 refs/heads/update-account
-fa69f4296325089fa0f41097732b812a39be16d9 refs/heads/update-delete-misisons
