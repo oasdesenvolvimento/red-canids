@@ -95,6 +95,18 @@ class MissionAllGetDataResponse(BaseModel):
         description="Code of mission",
         examples=["123456789"],
         max_length=100)
+    created_at: str = Field(
+        default="",
+        alias="created_at",
+        title="Created at of mission",
+        description="Created at of mission",
+        examples=["2021-01-01 00:00:00"])
+    updated_at: str = Field(
+        default="",
+        alias="updated_at",
+        title="Updated at of mission",
+        description="Updated at of mission",
+        examples=["2021-01-01 00:00:00"])
 
 
 class MissionAllGetResponse(BaseModel):
