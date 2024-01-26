@@ -30,8 +30,7 @@ class MissionAllGetDataResponse(BaseModel):
         alias="image_mission",
         title="Image of mission",
         description="Image of mission",
-        examples=["https://www.image.com.br"],
-        max_length=300)
+        examples=["https://www.image.com.br"])
     expiration_date: str = Field(
         default="",
         alias="expiration_date",
